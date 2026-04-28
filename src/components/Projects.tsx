@@ -29,7 +29,7 @@ export const Projects: React.FC = () => {
           'Yashwant-Rangrej/RAG-Based-Question-Answering-System',
           'Yashwant-Rangrej/GTTC_MAGADI_MAIN_WEBSITE',
           'Bharath-Aadhya-Intelligence/Exam-Aura-Backend',
-          'Bharath-Aadhya-Intelligence/GTTC_Magadi_Website'
+          'Bharath-Aadhya-Intelligence/School_Management_Frontend'
         ];
 
         const fetchedRepos = await Promise.all(
