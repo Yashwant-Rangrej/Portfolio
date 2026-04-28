@@ -110,6 +110,8 @@ export const Projects: React.FC = () => {
                   flexDirection: 'column',
                   height: '100%',
                   transition: 'transform 0.2s ease',
+                  minWidth: 0,
+                  overflow: 'hidden'
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = 'translateY(-5px)';
@@ -134,7 +136,13 @@ export const Projects: React.FC = () => {
                   </div>
                 </div>
 
-                <h3 style={{ fontSize: '1.25rem', marginBottom: '1rem', color: 'var(--text-main)' }}>
+                <h3 style={{ 
+                  fontSize: '1.25rem', 
+                  marginBottom: '1rem', 
+                  color: 'var(--text-main)',
+                  overflowWrap: 'anywhere',
+                  wordBreak: 'break-word'
+                }}>
                   <a href={repo.html_url} target="_blank" rel="noreferrer">{repo.name}</a>
                 </h3>
 
