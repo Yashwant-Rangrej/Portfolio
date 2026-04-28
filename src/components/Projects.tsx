@@ -25,11 +25,26 @@ export const Projects: React.FC = () => {
   useEffect(() => {
     const fetchRepos = async () => {
       try {
-        const res = await fetch('https://api.github.com/users/Yashwant-Rangrej/repos?sort=updated&per_page=6');
+        const res = await fetch('https://api.github.com/users/Yashwant-Rangrej/repos?sort=updated&per_page=10');
         if (res.ok) {
-          const data = await res.json();
-          // Filter out forks if desired, or just show top 6 updated
-          setRepos(data);
+          let data = await res.json();
+          
+          // Filter out the AI Assistant (RAG system)
+          data = data.filter((repo: any) => repo.name !== 'RAG-Based-Question-Answering-System');
+          
+          try {
+            // Fetch Exam Aura explicitly
+            const examRes = await fetch('https://api.github.com/repos/Bharath-Aadhya-Intelligence/Exam-Aura-Backend');
+            if (examRes.ok) {
+              const examData = await examRes.json();
+              data.unshift(examData);
+            }
+          } catch (e) {
+            console.error('Failed to fetch Exam Aura', e);
+          }
+
+          // Show top 6
+          setRepos(data.slice(0, 6));
         }
       } catch (err) {
         console.error('Failed to fetch repos', err);
