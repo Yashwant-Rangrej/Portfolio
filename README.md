@@ -1,73 +1,31 @@
-# React + TypeScript + Vite
+# Yashwant Rangrej | 3D Interactive Personal Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, high-performance 3D personal portfolio website designed to showcase projects, skills, and professional experience with a stunning visual aesthetic. Built using **React** and **Vite** for fast, optimized delivery, the portfolio integrates **Three.js** (via **React Three Fiber** and **Drei**) to render a highly interactive, AI/ML-themed neural network background, giving the site a distinct, futuristic, and premium feel.
 
-Currently, two official plugins are available:
+The application leverages **Framer Motion** to deliver smooth, physics-based micro-animations and seamless page transitions, ensuring an engaging user experience. It features responsive, component-based architecture with dedicated sections for an interactive Hero introduction, an About me segment, a Contact form, and a dynamic Projects showcase that fetches real-time repository data from GitHub. Styled meticulously with modern design principles—incorporating dark mode aesthetics, dynamic hover effects, and sleek typography—the project serves as both a testament to advanced web development skills and a creative platform for professional networking.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Key Features
+*   **Immersive 3D Experience:** Custom-built neural network background utilizing Three.js and WebGL.
+*   **Dynamic Data Integration:** Automatically fetches and displays project details from GitHub repositories.
+*   **Smooth Animations:** Fluid UI transitions and interactive elements powered by Framer Motion.
+*   **High Performance:** Optimized build process and fast hot-module replacement using Vite.
+*   **Modern Tech Stack:** React 19, TypeScript, Three.js, Framer Motion, and Lucide React icons.
 
-## React Compiler
+## Tech Stack
+- **Frontend Framework:** React 19, TypeScript
+- **Build Tool:** Vite
+- **3D Rendering:** Three.js, React Three Fiber, React Three Drei
+- **Animations:** Framer Motion
+- **Icons:** Lucide React
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Running Locally
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+1. Clone the repository
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
