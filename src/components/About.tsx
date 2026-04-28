@@ -36,7 +36,7 @@ export const About: React.FC = () => {
                 Fast-forward to today, I've had the privilege of building diverse projects spanning from cross-platform mobile apps using Flutter and React Native to robust backend systems and cutting-edge AI/ML models.
               </p>
               <p>
-                Currently, I am working as the <strong>Co-Founder and CTO</strong> at <a href="https://github.com/Bharath-Aadhya-Intelligence" target="_blank" rel="noreferrer" style={{ color: 'var(--accent)', textDecoration: 'underline' }}>Bharath Aadhya Intelligence</a>, where my main focus is building accessible, inclusive products and digital experiences that leverage artificial intelligence to solve real-world problems.
+                Currently, I am working as the <strong>Co-Founder and CTO</strong> at <a href="https://github.com/Bharath-Aadhya-Intelligence" target="_blank" rel="noreferrer" style={{ color: 'var(--accent)', textDecoration: 'underline' }}>Bharath Aadhya Intelligence</a>, where I lead the development of innovative projects aimed at building accessible, inclusive products and digital experiences that leverage artificial intelligence to solve real-world problems.
               </p>
             </div>
           </motion.div>

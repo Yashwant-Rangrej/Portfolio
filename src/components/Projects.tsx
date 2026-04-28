@@ -25,27 +25,45 @@ export const Projects: React.FC = () => {
   useEffect(() => {
     const fetchRepos = async () => {
       try {
-        const res = await fetch('https://api.github.com/users/Yashwant-Rangrej/repos?sort=updated&per_page=10');
-        if (res.ok) {
-          let data = await res.json();
-          
-          // Filter out the AI Assistant (RAG system)
-          data = data.filter((repo: any) => repo.name !== 'RAG-Based-Question-Answering-System');
-          
-          try {
-            // Fetch Exam Aura explicitly
-            const examRes = await fetch('https://api.github.com/repos/Bharath-Aadhya-Intelligence/Exam-Aura-Backend');
-            if (examRes.ok) {
-              const examData = await examRes.json();
-              data.unshift(examData);
-            }
-          } catch (e) {
-            console.error('Failed to fetch Exam Aura', e);
-          }
+        const repoPaths = [
+          'Yashwant-Rangrej/RAG-Based-Question-Answering-System',
+          'Yashwant-Rangrej/GTTC_MAGADI_MAIN_WEBSITE',
+          'Bharath-Aadhya-Intelligence/Exam-Aura-Backend',
+          'Bharath-Aadhya-Intelligence/GTTC_Magadi_Website'
+        ];
 
-          // Show top 6
-          setRepos(data.slice(0, 6));
+        const fetchedRepos = await Promise.all(
+          repoPaths.map(async (path) => {
+            try {
+              const res = await fetch(`https://api.github.com/repos/${path}`);
+              if (res.ok) return await res.json();
+              return null;
+            } catch (e) {
+              console.error(`Failed to fetch ${path}`, e);
+              return null;
+            }
+          })
+        );
+
+        const validRepos = fetchedRepos.filter((repo): repo is Repo => repo !== null);
+        
+        // Fill up to 6 with latest repos from Yashwant-Rangrej
+        try {
+          const res = await fetch('https://api.github.com/users/Yashwant-Rangrej/repos?sort=updated&per_page=10');
+          if (res.ok) {
+            const data = await res.json();
+            const additional = data.filter((repo: any) => 
+              !repoPaths.includes(repo.full_name) && 
+              repo.name !== 'Yashwant-Rangrej' &&
+              !validRepos.some(v => v.id === repo.id)
+            );
+            validRepos.push(...additional.slice(0, 6 - validRepos.length));
+          }
+        } catch (e) {
+          console.error('Failed to fetch additional repos', e);
         }
+
+        setRepos(validRepos);
       } catch (err) {
         console.error('Failed to fetch repos', err);
       } finally {
