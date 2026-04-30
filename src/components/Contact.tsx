@@ -41,7 +41,7 @@ export const Contact: React.FC = () => {
             <a href="https://github.com/Yashwant-Rangrej" target="_blank" rel="noreferrer" aria-label="GitHub">
               <GithubIcon size={32} />
             </a>
-            <a href="https://linkedin.com/in/yashwant-rangrej" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+            <a href="https://www.linkedin.com/in/yashwant-rangrej-0856993a8/" target="_blank" rel="noreferrer" aria-label="LinkedIn">
               <LinkedinIcon size={32} />
             </a>
             <a href="mailto:hello@example.com" aria-label="Email">
