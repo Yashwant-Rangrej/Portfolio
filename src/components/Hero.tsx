@@ -20,7 +20,7 @@ export const Hero: React.FC = () => {
             I build AI & Mobile Applications.
           </h2>
           <p style={{ maxWidth: '600px', fontSize: '1.25rem', marginBottom: '3rem' }}>
-            I'm a software developer specializing in artificial intelligence, machine learning, and mobile application development. I create seamless, intelligent, and visually striking digital experiences.
+            Currently working at the <strong>Bharath Aadhya Intelligence</strong> organization on GitHub, focusing on the development of AI-driven solutions and high-impact client-based applications to solve complex, real-world problems through accessible digital experiences.
           </p>
 
           <motion.div
