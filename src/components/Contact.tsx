@@ -44,13 +44,13 @@ export const Contact: React.FC = () => {
             <a href="https://www.linkedin.com/in/yashwant-rangrej-0856993a8/" target="_blank" rel="noreferrer" aria-label="LinkedIn">
               <LinkedinIcon size={32} />
             </a>
-            <a href="mailto:hello@example.com" aria-label="Email">
+            <a href="mailto:yashwant15rangrej@gmail.com" aria-label="Email">
               <Mail size={32} />
             </a>
           </div>
 
           <a 
-            href="mailto:hello@example.com"
+            href="mailto:yashwant15rangrej@gmail.com"
             style={{
               display: 'inline-block',
               padding: '1.25rem 2.5rem',
