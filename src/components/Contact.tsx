@@ -74,7 +74,6 @@ export const Contact: React.FC = () => {
       </div>
       
       <footer style={{ marginTop: 'auto', padding: '2rem 0', color: 'var(--text-muted)', fontSize: '0.9rem' }}>
-        <p>Built with React & Three.js</p>
         <p>© {new Date().getFullYear()} Yashwant Rangrej</p>
       </footer>
     </section>
