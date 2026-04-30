@@ -28,7 +28,7 @@ export const Projects: React.FC = () => {
         const repoPaths = [
           'Yashwant-Rangrej/RAG-Based-Question-Answering-System',
           'Yashwant-Rangrej/GTTC_MAGADI_MAIN_WEBSITE',
-          'Bharath-Aadhya-Intelligence/Exam-Aura-Backend',
+          'Yashwant-Rangrej/Exam_Aura',
           'Bharath-Aadhya-Intelligence/School_Management_Frontend'
         ];
 
