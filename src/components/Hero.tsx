@@ -27,6 +27,7 @@ export const Hero: React.FC = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5, duration: 0.8 }}
+            style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}
           >
             <a 
               href="#projects"
@@ -39,6 +40,7 @@ export const Hero: React.FC = () => {
                 fontWeight: 500,
                 cursor: 'pointer',
                 transition: 'all 0.3s ease',
+                textDecoration: 'none'
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.backgroundColor = 'var(--accent)';
@@ -50,6 +52,33 @@ export const Hero: React.FC = () => {
               }}
             >
               View My Work
+            </a>
+            <a 
+              href="/Yashwant_Rangrej_Resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: 'inline-block',
+                padding: '1rem 2rem',
+                border: '1px solid var(--accent)',
+                backgroundColor: 'var(--accent)',
+                color: 'var(--bg-color)',
+                fontSize: '1rem',
+                fontWeight: 500,
+                cursor: 'pointer',
+                transition: 'all 0.3s ease',
+                textDecoration: 'none'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = 'transparent';
+                e.currentTarget.style.color = 'var(--accent)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = 'var(--accent)';
+                e.currentTarget.style.color = 'var(--bg-color)';
+              }}
+            >
+              Get My Resume
             </a>
           </motion.div>
         </motion.div>
