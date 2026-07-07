@@ -123,3 +123,9 @@ a:hover {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--text-muted);
 }
+
+/* Responsive Utilities */
+@media (min-width: 768px) {
+  .md\:flex-row { flex-direction: row; }
+  .md\:gap-12 { gap: 3rem; }
+}
