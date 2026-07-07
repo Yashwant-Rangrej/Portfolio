@@ -18,12 +18,6 @@ The application leverages **Framer Motion** to deliver smooth, physics-based mic
 - **Animations:** [Framer Motion](https://www.framer.com/motion/)
 - **Icons:** [Lucide React](https://lucide.dev/)
 
-## 📂 Featured Projects
-The portfolio dynamically showcases high-impact projects, including:
-- **RAG-Based Question Answering System:** An advanced AI solution for retrieval-augmented generation.
-- **GTTC Magadi Main Website:** A professional institution website.
-- **Exam Aura:** A specialized platform for educational excellence.
-- **School Management System:** Developed under the **Bharath Aadhya Intelligence** organization.
 
 ## 🏢 Professional Background
 Currently working at the **Bharath Aadhya Intelligence** organization on GitHub, focusing on the development of AI-driven solutions and high-impact client-based applications to solve complex, real-world problems through accessible digital experiences.
