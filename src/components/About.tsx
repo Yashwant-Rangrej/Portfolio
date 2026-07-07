@@ -19,8 +19,8 @@ export const About: React.FC = () => {
     <section id="about" className="section" style={{ minHeight: 'auto', padding: '100px 0' }}>
       <div className="container">
         <div className="flex flex-col gap-8" style={{ md: { flexDirection: 'row' } } as any}>
-          
-          <motion.div 
+
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -36,12 +36,12 @@ export const About: React.FC = () => {
                 Fast-forward to today, I've had the privilege of building diverse projects spanning from cross-platform mobile apps using Flutter and React Native to robust backend systems and cutting-edge AI/ML models.
               </p>
               <p>
-                Currently working at the <a href="https://github.com/Bharath-Aadhya-Intelligence" target="_blank" rel="noreferrer" style={{ color: 'var(--accent)', textDecoration: 'underline' }}>Bharath Aadhya Intelligence</a> organization on GitHub, focusing on the development of AI-driven solutions and high-impact client-based applications to solve complex, real-world problems through accessible digital experiences.
+                Currently working as an AI/ML Intern at <a href="https://abhyudyayatech.com/" target="_blank" rel="noreferrer" style={{ color: 'var(--accent)', textDecoration: 'underline' }}>Abhyudyaya Techno Solutions</a>, focusing on the development of AI-driven solutions and high-impact client-based applications to solve complex, real-world problems through accessible digital experiences.
               </p>
             </div>
           </motion.div>
 
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -49,9 +49,9 @@ export const About: React.FC = () => {
             style={{ flex: 1 }}
           >
             <h3 style={{ fontSize: '1.5rem', marginBottom: '1.5rem', marginTop: '2rem' }}>Technologies I've been working with:</h3>
-            <ul style={{ 
-              display: 'grid', 
-              gridTemplateColumns: 'repeat(2, minmax(140px, 200px))', 
+            <ul style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(2, minmax(140px, 200px))',
               gap: '10px',
               listStyle: 'none',
               padding: 0
