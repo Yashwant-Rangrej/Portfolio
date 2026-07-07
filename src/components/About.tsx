@@ -38,6 +38,9 @@ export const About: React.FC = () => {
               <p>
                 Currently working as an AI/ML Intern at <a href="https://abhyudyayatech.com/" target="_blank" rel="noreferrer" style={{ color: 'var(--accent)', textDecoration: 'underline' }}>Abhyudyaya Techno Solutions</a>, focusing on the development of AI-driven solutions and high-impact client-based applications to solve complex, real-world problems through accessible digital experiences.
               </p>
+              <p>
+                Additionally, I am working at the <a href="https://github.com/Bharath-Aadhya-Intelligence" target="_blank" rel="noreferrer" style={{ color: 'var(--accent)', textDecoration: 'underline' }}>Bharath Aadhya Intelligence</a> organization on GitHub, contributing to AI-driven solutions and impactful applications.
+              </p>
             </div>
           </motion.div>
 
