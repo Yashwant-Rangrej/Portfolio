@@ -1,20 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-
-const skills = [
-  "Artificial Intelligence",
-  "Machine Learning",
-  "Deep Learning",
-  "Mobile App Development",
-  "Flutter",
-  "React",
-  "TypeScript",
-  "Python",
-  "TensorFlow",
-  "PyTorch"
-];
+import { usePortfolio } from '../context/PortfolioContext';
 
 export const About: React.FC = () => {
+  const { data } = usePortfolio();
+  const { paragraphs, skills } = data.about;
+
   return (
     <section id="about" className="section" style={{ minHeight: 'auto', padding: '100px 0' }}>
       <div className="container">
@@ -29,18 +20,9 @@ export const About: React.FC = () => {
           >
             <h2 className="section-title">About Me</h2>
             <div style={{ fontSize: '1.1rem', color: 'var(--text-muted)' }}>
-              <p>
-                Hello! My name is Yashwant and I enjoy creating things that live on the internet, from mobile applications to intelligent systems. My interest in software engineering started back when I was exploring how things work under the hood.
-              </p>
-              <p>
-                Fast-forward to today, I've had the privilege of building diverse projects spanning from cross-platform mobile apps using Flutter and React Native to robust backend systems and cutting-edge AI/ML models.
-              </p>
-              <p>
-                Currently working as an AI/ML Intern at <a href="https://abhyudyayatech.com/" target="_blank" rel="noreferrer" style={{ color: 'var(--accent)', textDecoration: 'underline' }}>Abhyudyaya Techno Solutions</a>, focusing on the development of AI-driven solutions and high-impact client-based applications to solve complex, real-world problems through accessible digital experiences.
-              </p>
-              <p>
-                Additionally, I am working at the <a href="https://github.com/Bharath-Aadhya-Intelligence" target="_blank" rel="noreferrer" style={{ color: 'var(--accent)', textDecoration: 'underline' }}>Bharath Aadhya Intelligence</a> organization on GitHub, contributing to AI-driven solutions and impactful applications.
-              </p>
+              {paragraphs.map((p, i) => (
+                <p key={i}>{p}</p>
+              ))}
             </div>
           </motion.div>
 

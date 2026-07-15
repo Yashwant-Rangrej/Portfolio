@@ -1,7 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { usePortfolio } from '../context/PortfolioContext';
 
 export const Hero: React.FC = () => {
+  const { data } = usePortfolio();
+
   return (
     <section className="section" style={{ minHeight: '100vh', justifyContent: 'center' }}>
       <div className="container">
@@ -11,16 +14,16 @@ export const Hero: React.FC = () => {
           transition={{ duration: 0.8 }}
         >
           <h4 style={{ color: 'var(--accent)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '1rem', fontWeight: 600 }}>
-            Hello, I'm
+            {data.hero.greeting}
           </h4>
           <h1 style={{ fontSize: 'clamp(3rem, 8vw, 6rem)', margin: '0 0 1rem 0', color: 'var(--text-main)' }}>
-            Yashwant Rangrej.
+            {data.hero.name}
           </h1>
           <h2 style={{ fontSize: 'clamp(2rem, 5vw, 4rem)', color: 'var(--text-muted)', marginBottom: '2rem' }}>
-            I build AI & Mobile Applications.
+            {data.hero.title}
           </h2>
           <p style={{ maxWidth: '600px', fontSize: '1.25rem', marginBottom: '3rem' }}>
-            Currently working as an AI/ML Intern at <strong>Abhyudyaya Techno Solutions</strong>, focusing on the development of AI-driven solutions and high-impact client-based applications to solve complex, real-world problems through accessible digital experiences.
+            {data.hero.description}
           </p>
 
           <motion.div
@@ -54,7 +57,7 @@ export const Hero: React.FC = () => {
               View My Work
             </a>
             <a 
-              href="/Yashwant_Rangrej_Resume.pdf"
+              href={data.hero.resumeUrl}
               target="_blank"
               rel="noopener noreferrer"
               style={{

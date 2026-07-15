@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { ExternalLink, Folder } from 'lucide-react';
+import { usePortfolio } from '../context/PortfolioContext';
 
 const GithubIcon = ({ size = 24 }) => (
   <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -19,19 +20,15 @@ interface Repo {
 }
 
 export const Projects: React.FC = () => {
+  const { data } = usePortfolio();
+  const repoPaths = data.projects.githubRepos;
+
   const [repos, setRepos] = useState<Repo[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchRepos = async () => {
       try {
-        const repoPaths = [
-          'Yashwant-Rangrej/RAG-Based-Question-Answering-System',
-          'Yashwant-Rangrej/GTTC_MAGADI_MAIN_WEBSITE',
-          'Yashwant-Rangrej/Exam_Aura',
-          'Bharath-Aadhya-Intelligence/School_Management_Frontend'
-        ];
-
         const fetchedRepos = await Promise.all(
           repoPaths.map(async (path) => {
             try {
@@ -51,8 +48,8 @@ export const Projects: React.FC = () => {
         try {
           const res = await fetch('https://api.github.com/users/Yashwant-Rangrej/repos?sort=updated&per_page=10');
           if (res.ok) {
-            const data = await res.json();
-            const additional = data.filter((repo: { full_name: string; name: string; id: number; [key: string]: unknown }) => 
+            const githubData = await res.json();
+            const additional = githubData.filter((repo: { full_name: string; name: string; id: number; [key: string]: unknown }) => 
               !repoPaths.includes(repo.full_name) && 
               repo.name !== 'Yashwant-Rangrej' &&
               !validRepos.some(v => v.id === repo.id)
@@ -70,8 +67,13 @@ export const Projects: React.FC = () => {
         setLoading(false);
       }
     };
-    fetchRepos();
-  }, []);
+    
+    if (repoPaths.length > 0) {
+      fetchRepos();
+    } else {
+      setLoading(false);
+    }
+  }, [repoPaths]);
 
   return (
     <section id="projects" className="section" style={{ minHeight: 'auto', padding: '100px 0' }}>
