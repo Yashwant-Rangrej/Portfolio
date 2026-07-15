@@ -3,15 +3,29 @@ import { useNavigate } from 'react-router-dom';
 
 export const AdminLogin: React.FC = () => {
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (password === 'admin123') { // Simple local auth
-      localStorage.setItem('isAdmin', 'true');
-      navigate('/admin/dashboard');
-    } else {
-      alert('Incorrect password');
+    setError('');
+    try {
+      const res = await fetch('http://localhost:3001/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password })
+      });
+      const data = await res.json();
+      
+      if (data.success && data.token) {
+        localStorage.setItem('adminToken', data.token);
+        localStorage.setItem('isAdmin', 'true'); // Keeping this for backward compatibility in AdminDashboard.tsx if needed
+        navigate('/admin/dashboard');
+      } else {
+        setError(data.error || 'Login failed');
+      }
+    } catch (err) {
+      setError('Network error connecting to backend');
     }
   };
 
@@ -19,6 +33,7 @@ export const AdminLogin: React.FC = () => {
     <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: 'var(--bg-color)' }}>
       <form onSubmit={handleLogin} style={{ padding: '2rem', backgroundColor: 'var(--card-bg)', borderRadius: '8px', border: '1px solid var(--border-color)', width: '300px' }}>
         <h2 style={{ marginBottom: '1.5rem', fontFamily: 'var(--font-display)' }}>Admin Login</h2>
+        {error && <p style={{ color: '#ff4444', marginBottom: '1rem', fontSize: '0.9rem' }}>{error}</p>}
         <input 
           type="password" 
           value={password}

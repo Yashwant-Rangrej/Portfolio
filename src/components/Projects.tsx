@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { ExternalLink, Folder } from 'lucide-react';
-import { usePortfolio } from '../context/PortfolioContext';
 
 const GithubIcon = ({ size = 24 }) => (
   <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -20,60 +19,29 @@ interface Repo {
 }
 
 export const Projects: React.FC = () => {
-  const { data } = usePortfolio();
-  const repoPaths = data.projects.githubRepos;
-
   const [repos, setRepos] = useState<Repo[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchRepos = async () => {
       try {
-        const fetchedRepos = await Promise.all(
-          repoPaths.map(async (path) => {
-            try {
-              const res = await fetch(`https://api.github.com/repos/${path}`);
-              if (res.ok) return await res.json();
-              return null;
-            } catch (e) {
-              console.error(`Failed to fetch ${path}`, e);
-              return null;
-            }
-          })
-        );
-
-        const validRepos = fetchedRepos.filter((repo): repo is Repo => repo !== null);
-        
-        // Fill up to 6 with latest repos from Yashwant-Rangrej
-        try {
-          const res = await fetch('https://api.github.com/users/Yashwant-Rangrej/repos?sort=updated&per_page=10');
-          if (res.ok) {
-            const githubData = await res.json();
-            const additional = githubData.filter((repo: { full_name: string; name: string; id: number; [key: string]: unknown }) => 
-              !repoPaths.includes(repo.full_name) && 
-              repo.name !== 'Yashwant-Rangrej' &&
-              !validRepos.some(v => v.id === repo.id)
-            );
-            validRepos.push(...additional.slice(0, 6 - validRepos.length));
-          }
-        } catch (e) {
-          console.error('Failed to fetch additional repos', e);
+        const res = await fetch('http://localhost:3001/api/projects');
+        if (res.ok) {
+          const data = await res.json();
+          setRepos(data);
+        } else {
+          console.error('Failed to fetch repos from backend');
         }
-
-        setRepos(validRepos);
       } catch (err) {
-        console.error('Failed to fetch repos', err);
+        console.error('Network error fetching repos', err);
       } finally {
         setLoading(false);
       }
     };
     
-    if (repoPaths.length > 0) {
-      fetchRepos();
-    } else {
-      setLoading(false);
-    }
-  }, [repoPaths]);
+    // Always try to fetch from backend
+    fetchRepos();
+  }, []);
 
   return (
     <section id="projects" className="section" style={{ minHeight: 'auto', padding: '100px 0' }}>

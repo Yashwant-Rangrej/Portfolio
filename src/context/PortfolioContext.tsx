@@ -90,16 +90,21 @@ export const PortfolioProvider: React.FC<{ children: React.ReactNode }> = ({ chi
 
   const saveData = async (newData: PortfolioData) => {
     try {
+      const token = localStorage.getItem('adminToken');
       const res = await fetch('http://localhost:3001/api/portfolio-data', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
         body: JSON.stringify(newData)
       });
       if (res.ok) {
         setData(newData);
         alert('Saved successfully!');
       } else {
-        alert('Error saving data');
+        const errData = await res.json().catch(() => ({}));
+        alert(`Error saving data: ${errData.error || 'Unauthorized'}`);
       }
     } catch (err) {
       console.error(err);
