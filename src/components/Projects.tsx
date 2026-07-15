@@ -52,7 +52,7 @@ export const Projects: React.FC = () => {
           const res = await fetch('https://api.github.com/users/Yashwant-Rangrej/repos?sort=updated&per_page=10');
           if (res.ok) {
             const data = await res.json();
-            const additional = data.filter((repo: any) => 
+            const additional = data.filter((repo: { full_name: string; name: string; id: number; [key: string]: unknown }) => 
               !repoPaths.includes(repo.full_name) && 
               repo.name !== 'Yashwant-Rangrej' &&
               !validRepos.some(v => v.id === repo.id)

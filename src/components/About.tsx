@@ -18,7 +18,7 @@ export const About: React.FC = () => {
   return (
     <section id="about" className="section" style={{ minHeight: 'auto', padding: '100px 0' }}>
       <div className="container">
-        <div className="flex flex-col md:flex-row gap-8 md:gap-12">
+        <div className="flex flex-col gap-8">
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}

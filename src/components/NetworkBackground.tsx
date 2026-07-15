@@ -1,32 +1,29 @@
-import React, { useMemo, useRef } from 'react';
+import React, { useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
+
+const particleCount = 100;
+const maxDistance = 2.5;
+
+const initialParticles = (() => {
+  const pos = new Float32Array(particleCount * 3);
+  const vel = [];
+  for (let i = 0; i < particleCount; i++) {
+    pos[i * 3] = (Math.random() - 0.5) * 15;
+    pos[i * 3 + 1] = (Math.random() - 0.5) * 15;
+    pos[i * 3 + 2] = (Math.random() - 0.5) * 15;
+    vel.push({
+      x: (Math.random() - 0.5) * 0.02,
+      y: (Math.random() - 0.5) * 0.02,
+      z: (Math.random() - 0.5) * 0.02,
+    });
+  }
+  return { positions: pos, velocities: vel, linePositions: new Float32Array(particleCount * particleCount * 3) };
+})();
 
 const ParticleNetwork = () => {
   const pointsRef = useRef<THREE.Points>(null);
   const linesRef = useRef<THREE.LineSegments>(null);
-  const particleCount = 100;
-  const maxDistance = 2.5;
-
-  // Generate random particle positions
-  const { positions, velocities } = useMemo(() => {
-    const pos = new Float32Array(particleCount * 3);
-    const vel = [];
-    for (let i = 0; i < particleCount; i++) {
-      pos[i * 3] = (Math.random() - 0.5) * 15;
-      pos[i * 3 + 1] = (Math.random() - 0.5) * 15;
-      pos[i * 3 + 2] = (Math.random() - 0.5) * 15;
-      vel.push({
-        x: (Math.random() - 0.5) * 0.02,
-        y: (Math.random() - 0.5) * 0.02,
-        z: (Math.random() - 0.5) * 0.02,
-      });
-    }
-    return { positions: pos, velocities: vel };
-  }, [particleCount]);
-
-  // Array to hold line positions
-  const linePositions = useMemo(() => new Float32Array(particleCount * particleCount * 3), [particleCount]);
 
   useFrame(() => {
     if (!pointsRef.current || !linesRef.current) return;
@@ -36,14 +33,14 @@ const ParticleNetwork = () => {
 
     // Update particle positions
     for (let i = 0; i < particleCount; i++) {
-      positionsAttr.array[i * 3] += velocities[i].x;
-      positionsAttr.array[i * 3 + 1] += velocities[i].y;
-      positionsAttr.array[i * 3 + 2] += velocities[i].z;
+      positionsAttr.array[i * 3] += initialParticles.velocities[i].x;
+      positionsAttr.array[i * 3 + 1] += initialParticles.velocities[i].y;
+      positionsAttr.array[i * 3 + 2] += initialParticles.velocities[i].z;
 
       // Bounce off invisible walls
-      if (Math.abs(positionsAttr.array[i * 3]) > 7.5) velocities[i].x *= -1;
-      if (Math.abs(positionsAttr.array[i * 3 + 1]) > 7.5) velocities[i].y *= -1;
-      if (Math.abs(positionsAttr.array[i * 3 + 2]) > 7.5) velocities[i].z *= -1;
+      if (Math.abs(positionsAttr.array[i * 3]) > 7.5) initialParticles.velocities[i].x *= -1;
+      if (Math.abs(positionsAttr.array[i * 3 + 1]) > 7.5) initialParticles.velocities[i].y *= -1;
+      if (Math.abs(positionsAttr.array[i * 3 + 2]) > 7.5) initialParticles.velocities[i].z *= -1;
     }
     positionsAttr.needsUpdate = true;
 
@@ -56,19 +53,19 @@ const ParticleNetwork = () => {
         const distSq = dx * dx + dy * dy + dz * dz;
 
         if (distSq < maxDistance * maxDistance) {
-          linePositions[lineIndex++] = positionsAttr.array[i * 3];
-          linePositions[lineIndex++] = positionsAttr.array[i * 3 + 1];
-          linePositions[lineIndex++] = positionsAttr.array[i * 3 + 2];
+          initialParticles.linePositions[lineIndex++] = positionsAttr.array[i * 3];
+          initialParticles.linePositions[lineIndex++] = positionsAttr.array[i * 3 + 1];
+          initialParticles.linePositions[lineIndex++] = positionsAttr.array[i * 3 + 2];
 
-          linePositions[lineIndex++] = positionsAttr.array[j * 3];
-          linePositions[lineIndex++] = positionsAttr.array[j * 3 + 1];
-          linePositions[lineIndex++] = positionsAttr.array[j * 3 + 2];
+          initialParticles.linePositions[lineIndex++] = positionsAttr.array[j * 3];
+          initialParticles.linePositions[lineIndex++] = positionsAttr.array[j * 3 + 1];
+          initialParticles.linePositions[lineIndex++] = positionsAttr.array[j * 3 + 2];
         }
       }
     }
 
     const linesAttr = linesRef.current.geometry.attributes.position as THREE.BufferAttribute;
-    linesAttr.set(linePositions);
+    linesAttr.set(initialParticles.linePositions);
     linesRef.current.geometry.setDrawRange(0, lineIndex / 3);
     linesAttr.needsUpdate = true;
     
@@ -83,8 +80,8 @@ const ParticleNetwork = () => {
         <bufferGeometry>
           <bufferAttribute
             attach="attributes-position"
-            args={[positions, 3]}
-            count={positions.length / 3}
+            args={[initialParticles.positions, 3]}
+            count={initialParticles.positions.length / 3}
             itemSize={3}
           />
         </bufferGeometry>
@@ -94,8 +91,8 @@ const ParticleNetwork = () => {
         <bufferGeometry>
           <bufferAttribute
             attach="attributes-position"
-            args={[linePositions, 3]}
-            count={linePositions.length / 3}
+            args={[initialParticles.linePositions, 3]}
+            count={initialParticles.linePositions.length / 3}
             itemSize={3}
           />
         </bufferGeometry>
