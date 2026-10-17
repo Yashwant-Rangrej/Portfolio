@@ -47,12 +47,7 @@ const defaultData: PortfolioData = {
     ]
   },
   projects: {
-    githubRepos: [
-      "Yashwant-Rangrej/RAG-Based-Question-Answering-System",
-      "Yashwant-Rangrej/GTTC_MAGADI_MAIN_WEBSITE",
-      "Yashwant-Rangrej/Exam_Aura",
-      "Bharath-Aadhya-Intelligence/School_Management_Frontend"
-    ]
+    githubRepos: []
   }
 };
 

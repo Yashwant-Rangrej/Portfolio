@@ -6,6 +6,18 @@ import { ArrowRight, FileText } from 'lucide-react';
 export const Hero: React.FC = () => {
   const { data } = usePortfolio();
 
+  // Resolve correct public path with Vite base URL (/Portfolio/)
+  const getResumeUrl = () => {
+    const base = import.meta.env.BASE_URL || '/';
+    const rawUrl = data.hero.resumeUrl || 'Yashwant_Rangrej_Resume.pdf';
+    if (rawUrl.startsWith('http://') || rawUrl.startsWith('https://')) {
+      return rawUrl;
+    }
+    const cleanUrl = rawUrl.startsWith('/') ? rawUrl.slice(1) : rawUrl;
+    const cleanBase = base.endsWith('/') ? base : `${base}/`;
+    return `${cleanBase}${cleanUrl}`;
+  };
+
   return (
     <section className="section" style={{ minHeight: '100vh', justifyContent: 'center' }}>
       <div className="container">
@@ -72,7 +84,7 @@ export const Hero: React.FC = () => {
 
             {data.hero.resumeUrl && (
               <a 
-                href={data.hero.resumeUrl} 
+                href={getResumeUrl()}
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="btn-secondary"

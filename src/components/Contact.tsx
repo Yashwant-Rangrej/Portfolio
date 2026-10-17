@@ -42,21 +42,41 @@ export const Contact: React.FC = () => {
     setErrorMessage('');
 
     try {
-      const res = await fetch(API_ENDPOINTS.contact, {
+      // 1. Send directly to your email address (yashwant15rangrej@gmail.com)
+      const emailPromise = fetch('https://formsubmit.co/ajax/yashwant15rangrej@gmail.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          _subject: formData.subject || ('New Portfolio Message from ' + formData.name),
+          message: formData.message,
+          _template: 'table',
+          _captcha: 'false'
+        })
+      });
+
+      // 2. Also save to backend database for the Admin Dashboard
+      const backendPromise = fetch(API_ENDPOINTS.contact, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(formData)
-      });
+      }).catch(err => console.warn('Backend save skipped:', err));
 
-      if (res.ok) {
+      const [emailRes] = await Promise.all([emailPromise, backendPromise]);
+      const emailData = await emailRes.json().catch(() => ({}));
+
+      if (emailRes.ok || emailData.success === 'true' || emailData.success === true || emailData.message?.includes('Activation')) {
         setStatus('success');
         setFormData({ name: '', email: '', subject: '', message: '' });
       } else {
-        const errorData = await res.json().catch(() => ({}));
         setStatus('error');
-        setErrorMessage(errorData.detail || 'Failed to send message. Please try again.');
+        setErrorMessage(emailData.message || 'Failed to send message. Please try again.');
       }
     } catch {
       setStatus('error');
@@ -123,7 +143,7 @@ export const Contact: React.FC = () => {
                 <div>
                   <div style={{ fontSize: '0.85rem', color: 'var(--text-subtle)' }}>Location</div>
                   <div style={{ color: 'var(--text-main)', fontWeight: 500, fontSize: '0.95rem' }}>
-                    India • Remote Worldwide
+                    Bangalore, India • Remote Worldwide
                   </div>
                 </div>
               </div>
