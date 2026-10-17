@@ -6,5 +6,6 @@ export const API_ENDPOINTS = {
   login: `${API_BASE_URL}/api/auth/login`,
   verifyAuth: `${API_BASE_URL}/api/auth/verify`,
   contact: `${API_BASE_URL}/api/contact`,
+  messages: `${API_BASE_URL}/api/contact/messages`,
   health: `${API_BASE_URL}/health`,
 };

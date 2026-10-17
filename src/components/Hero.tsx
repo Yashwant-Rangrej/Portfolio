@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { usePortfolio } from '../context/PortfolioContext';
+import { ArrowRight, FileText } from 'lucide-react';
 
 export const Hero: React.FC = () => {
   const { data } = usePortfolio();
@@ -12,77 +13,74 @@ export const Hero: React.FC = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
+          style={{ maxWidth: '850px' }}
         >
-          <h4 style={{ color: 'var(--accent)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '1rem', fontWeight: 600 }}>
-            {data.hero.greeting}
-          </h4>
-          <h1 style={{ fontSize: 'clamp(3rem, 8vw, 6rem)', margin: '0 0 1rem 0', color: 'var(--text-main)' }}>
+          {data.hero.greeting && (
+            <h4 style={{ 
+              color: 'var(--text-muted)', 
+              letterSpacing: '0.12em', 
+              textTransform: 'uppercase', 
+              marginBottom: '1.25rem', 
+              fontWeight: 600,
+              fontSize: '0.95rem'
+            }}>
+              {data.hero.greeting}
+            </h4>
+          )}
+
+          <h1 style={{ 
+            fontSize: 'clamp(3rem, 7vw, 5.5rem)', 
+            margin: '0 0 1rem 0', 
+            background: 'var(--gradient-hero)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            letterSpacing: '-0.03em'
+          }}>
             {data.hero.name}
           </h1>
-          <h2 style={{ fontSize: 'clamp(2rem, 5vw, 4rem)', color: 'var(--text-muted)', marginBottom: '2rem' }}>
+
+          <h2 style={{ 
+            fontSize: 'clamp(1.75rem, 4.5vw, 3.25rem)', 
+            color: 'var(--text-muted)', 
+            marginBottom: '2rem',
+            fontWeight: 600,
+            lineHeight: 1.2
+          }}>
             {data.hero.title}
           </h2>
-          <p style={{ maxWidth: '600px', fontSize: '1.25rem', marginBottom: '3rem' }}>
-            {data.hero.description}
+
+          <p style={{ 
+            maxWidth: '680px', 
+            fontSize: '1.2rem', 
+            marginBottom: '3rem', 
+            lineHeight: 1.7,
+            color: 'var(--text-muted)' 
+          }}>
+            {data.hero.description || "Passionate about crafting intelligent agents, cross-platform mobile apps, and robust high-performance backend microservices."}
           </p>
 
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5, duration: 0.8 }}
-            style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.6 }}
+            style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', alignItems: 'center' }}
           >
-            <a 
-              href="#projects"
-              style={{
-                display: 'inline-block',
-                padding: '1rem 2rem',
-                border: '1px solid var(--accent)',
-                color: 'var(--accent)',
-                fontSize: '1rem',
-                fontWeight: 500,
-                cursor: 'pointer',
-                transition: 'all 0.3s ease',
-                textDecoration: 'none'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = 'var(--accent)';
-                e.currentTarget.style.color = 'var(--bg-color)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = 'transparent';
-                e.currentTarget.style.color = 'var(--accent)';
-              }}
-            >
-              View My Work
+            <a href="#projects" className="btn-primary">
+              <span>View Featured Work</span>
+              <ArrowRight size={18} />
             </a>
-            <a 
-              href={data.hero.resumeUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                display: 'inline-block',
-                padding: '1rem 2rem',
-                border: '1px solid var(--accent)',
-                backgroundColor: 'var(--accent)',
-                color: 'var(--bg-color)',
-                fontSize: '1rem',
-                fontWeight: 500,
-                cursor: 'pointer',
-                transition: 'all 0.3s ease',
-                textDecoration: 'none'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = 'transparent';
-                e.currentTarget.style.color = 'var(--accent)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = 'var(--accent)';
-                e.currentTarget.style.color = 'var(--bg-color)';
-              }}
-            >
-              Get My Resume
-            </a>
+
+            {data.hero.resumeUrl && (
+              <a 
+                href={data.hero.resumeUrl} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="btn-secondary"
+              >
+                <FileText size={18} />
+                <span>Download Resume</span>
+              </a>
+            )}
           </motion.div>
         </motion.div>
       </div>
