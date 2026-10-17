@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { API_ENDPOINTS } from '../config/api';
 import { usePortfolio, type PortfolioData } from '../context/PortfolioContext';
 
 export const AdminDashboard: React.FC = () => {
@@ -9,9 +10,26 @@ export const AdminDashboard: React.FC = () => {
   const [formData, setFormData] = useState<PortfolioData>(data);
 
   useEffect(() => {
+    const token = localStorage.getItem('adminToken');
     const isAdmin = localStorage.getItem('isAdmin');
-    if (!isAdmin) {
+    if (!token && !isAdmin) {
       navigate('/admin');
+      return;
+    }
+    if (token) {
+      fetch(API_ENDPOINTS.verifyAuth, {
+        headers: { 'Authorization': `Bearer ${token}` }
+      })
+      .then(res => {
+        if (!res.ok) {
+          localStorage.removeItem('adminToken');
+          localStorage.removeItem('isAdmin');
+          navigate('/admin');
+        }
+      })
+      .catch(() => {
+        // Backend offline or local development fallback
+      });
     }
   }, [navigate]);
 
@@ -75,6 +93,7 @@ export const AdminDashboard: React.FC = () => {
 
   const handleLogout = () => {
     localStorage.removeItem('isAdmin');
+    localStorage.removeItem('adminToken');
     navigate('/admin');
   };
 

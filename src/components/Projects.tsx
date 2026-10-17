@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { API_ENDPOINTS } from '../config/api';
 import { motion } from 'framer-motion';
 import { ExternalLink, Folder } from 'lucide-react';
 
@@ -25,7 +26,7 @@ export const Projects: React.FC = () => {
   useEffect(() => {
     const fetchRepos = async () => {
       try {
-        const res = await fetch('http://localhost:3001/api/projects');
+        const res = await fetch(API_ENDPOINTS.projects);
         if (res.ok) {
           const data = await res.json();
           setRepos(data);

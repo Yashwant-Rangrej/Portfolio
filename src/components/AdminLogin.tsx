@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { API_ENDPOINTS } from '../config/api';
 import { useNavigate } from 'react-router-dom';
 
 export const AdminLogin: React.FC = () => {
@@ -10,7 +11,7 @@ export const AdminLogin: React.FC = () => {
     e.preventDefault();
     setError('');
     try {
-      const res = await fetch('http://localhost:3001/api/auth/login', {
+      const res = await fetch(API_ENDPOINTS.login, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ password })

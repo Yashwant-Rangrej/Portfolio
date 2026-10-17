@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { API_ENDPOINTS } from '../config/api';
 
 export interface PortfolioData {
   hero: {
@@ -71,7 +72,7 @@ export const PortfolioProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch('http://localhost:3001/api/portfolio-data');
+        const res = await fetch(API_ENDPOINTS.portfolioData);
         if (res.ok) {
           const dbData = await res.json();
           // Merge to ensure we always have all fields even if db is partially empty
@@ -91,7 +92,7 @@ export const PortfolioProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   const saveData = async (newData: PortfolioData) => {
     try {
       const token = localStorage.getItem('adminToken');
-      const res = await fetch('http://localhost:3001/api/portfolio-data', {
+      const res = await fetch(API_ENDPOINTS.portfolioData, {
         method: 'POST',
         headers: { 
           'Content-Type': 'application/json',
