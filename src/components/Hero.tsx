@@ -28,11 +28,11 @@ export const Hero: React.FC = () => {
           style={{ maxWidth: '850px' }}
         >
           {data.hero.greeting && (
-            <h4 style={{ 
-              color: 'var(--text-muted)', 
-              letterSpacing: '0.12em', 
-              textTransform: 'uppercase', 
-              marginBottom: '1.25rem', 
+            <h4 style={{
+              color: 'var(--text-muted)',
+              letterSpacing: '0.12em',
+              textTransform: 'uppercase',
+              marginBottom: '1.25rem',
               fontWeight: 600,
               fontSize: '0.95rem'
             }}>
@@ -40,9 +40,9 @@ export const Hero: React.FC = () => {
             </h4>
           )}
 
-          <h1 style={{ 
-            fontSize: 'clamp(3rem, 7vw, 5.5rem)', 
-            margin: '0 0 1rem 0', 
+          <h1 style={{
+            fontSize: 'clamp(3rem, 7vw, 5.5rem)',
+            margin: '0 0 1rem 0',
             background: 'var(--gradient-hero)',
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
@@ -51,9 +51,9 @@ export const Hero: React.FC = () => {
             {data.hero.name}
           </h1>
 
-          <h2 style={{ 
-            fontSize: 'clamp(1.75rem, 4.5vw, 3.25rem)', 
-            color: 'var(--text-muted)', 
+          <h2 style={{
+            fontSize: 'clamp(1.75rem, 4.5vw, 3.25rem)',
+            color: 'var(--text-muted)',
             marginBottom: '2rem',
             fontWeight: 600,
             lineHeight: 1.2
@@ -61,12 +61,12 @@ export const Hero: React.FC = () => {
             {data.hero.title}
           </h2>
 
-          <p style={{ 
-            maxWidth: '680px', 
-            fontSize: '1.2rem', 
-            marginBottom: '3rem', 
+          <p style={{
+            maxWidth: '680px',
+            fontSize: '1.2rem',
+            marginBottom: '3rem',
             lineHeight: 1.7,
-            color: 'var(--text-muted)' 
+            color: 'var(--text-muted)'
           }}>
             {data.hero.description || "Passionate about crafting intelligent agents, cross-platform mobile apps, and robust high-performance backend microservices."}
           </p>
@@ -83,14 +83,14 @@ export const Hero: React.FC = () => {
             </a>
 
             {data.hero.resumeUrl && (
-              <a 
+              <a
                 href={getResumeUrl()}
-                target="_blank" 
-                rel="noopener noreferrer" 
+                target="_blank"
+                rel="noopener noreferrer"
                 className="btn-secondary"
               >
                 <FileText size={18} />
-                <span>Download Resume</span>
+                <span>View Resume</span>
               </a>
             )}
           </motion.div>
