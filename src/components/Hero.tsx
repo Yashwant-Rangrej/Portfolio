@@ -166,13 +166,15 @@ export const Hero: React.FC = () => {
                   <span style={{ color: '#A1A1AA' }}>"role"</span>: <span style={{ color: '#34D399' }}>"AI/ML & Mobile Developer"</span>,
                 </div>
                 <div style={{ paddingLeft: '1.25rem' }}>
-                  <span style={{ color: '#A1A1AA' }}>"organization"</span>: <span style={{ color: '#FBBF24' }}>"Abhyudyaya Techno Solutions"</span>,
+                  <span style={{ color: '#A1A1AA' }}>"Currently working at"</span>: <span style={{ color: '#FBBF24' }}>"Abhyudyaya Techno Solutions"</span>,
                 </div>
                 <div style={{ paddingLeft: '1.25rem' }}>
                   <span style={{ color: '#A1A1AA' }}>"focus"</span>: [
-                  <div style={{ paddingLeft: '1.25rem', color: '#93C5FD' }}>"RAG & Vector Search (FAISS)",</div>
-                  <div style={{ paddingLeft: '1.25rem', color: '#93C5FD' }}>"Offline-First Mobile Apps",</div>
-                  <div style={{ paddingLeft: '1.25rem', color: '#93C5FD' }}>"Scalable FastAPI Backends"</div>
+                  <div style={{ paddingLeft: '1.25rem', color: '#93C5FD' }}>"Neural Networks & Deep Learning",</div>
+                  <div style={{ paddingLeft: '1.25rem', color: '#93C5FD' }}>"Natural Language Processing (NLP)",</div>
+                  <div style={{ paddingLeft: '1.25rem', color: '#93C5FD' }}>"Computer Vision (CV)",</div>
+                  <div style={{ paddingLeft: '1.25rem', color: '#93C5FD' }}>"Mobile Applications",</div>
+                  <div style={{ paddingLeft: '1.25rem', color: '#93C5FD' }}>"RAG & Vector Search (FAISS)"</div>
                   <span>],</span>
                 </div>
                 <div style={{ paddingLeft: '1.25rem' }}>
