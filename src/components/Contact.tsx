@@ -249,7 +249,7 @@ export const Contact: React.FC = () => {
                 <input
                   type="text"
                   name="name"
-                  placeholder="e.g. Alex Morgan"
+                  placeholder="e.g. Yashwant Rangrej"
                   value={formData.name}
                   onChange={handleChange}
                   required
@@ -264,7 +264,7 @@ export const Contact: React.FC = () => {
                 <input
                   type="email"
                   name="email"
-                  placeholder="alex@example.com"
+                  placeholder="yashwant@example.com"
                   value={formData.email}
                   onChange={handleChange}
                   required
