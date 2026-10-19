@@ -117,8 +117,9 @@ export const Projects: React.FC = () => {
                     onMouseEnter={(e) => e.currentTarget.style.color = '#FFFFFF'}
                     onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-main)'}
                   >
-                    {repo.name.replace(/[-_]/g, ' ')}
+                    {repo.name.replace(/\.git$/i, '').replace(/[-_]/g, ' ')}
                   </a>
+
                 </h3>
 
                 <p style={{ 
