@@ -60,11 +60,10 @@ export const Projects: React.FC = () => {
           </div>
         ) : (
           <div style={{
-            display: 'flex',
-            flexDirection: 'column',
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
             gap: '1.75rem',
-            maxWidth: '650px',
-            margin: '0 auto'
+            width: '100%'
           }}>
             {repos.map((repo, i) => (
               <motion.div
@@ -78,9 +77,11 @@ export const Projects: React.FC = () => {
                   padding: '2rem',
                   display: 'flex',
                   flexDirection: 'column',
+                  height: '100%',
                   borderRadius: '12px'
                 }}
               >
+
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
                   <div style={{ 
                     padding: '0.6rem', 
