@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { usePortfolio } from '../context/PortfolioContext';
-import { ArrowRight, FileText, Terminal, Sparkles } from 'lucide-react';
+import { ArrowRight, FileText, Sparkles } from 'lucide-react';
 
 export const Hero: React.FC = () => {
   const { data } = usePortfolio();
@@ -135,7 +135,6 @@ export const Hero: React.FC = () => {
               <div style={{
                 display: 'flex',
                 alignItems: 'center',
-                justifyContent: 'space-between',
                 padding: '0.85rem 1.25rem',
                 borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
                 background: 'rgba(255, 255, 255, 0.02)'
@@ -144,29 +143,6 @@ export const Hero: React.FC = () => {
                   <div style={{ width: '11px', height: '11px', borderRadius: '50%', background: 'rgba(255, 95, 86, 0.75)' }} />
                   <div style={{ width: '11px', height: '11px', borderRadius: '50%', background: 'rgba(255, 189, 46, 0.75)' }} />
                   <div style={{ width: '11px', height: '11px', borderRadius: '50%', background: 'rgba(39, 201, 63, 0.75)' }} />
-                </div>
-
-                <div style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '0.5rem',
-                  fontSize: '0.8rem',
-                  color: 'var(--text-muted)',
-                  fontFamily: 'Consolas, Monaco, monospace'
-                }}>
-                  <Terminal size={14} style={{ color: '#60A5FA' }} />
-                  <span>yashwant_ai.py</span>
-                </div>
-
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.75rem', color: '#34D399' }}>
-                  <span style={{
-                    width: '6px',
-                    height: '6px',
-                    borderRadius: '50%',
-                    background: '#34D399',
-                    boxShadow: '0 0 8px #34D399'
-                  }} />
-                  <span style={{ fontFamily: 'Consolas, Monaco, monospace' }}>Python 3.11</span>
                 </div>
               </div>
 
