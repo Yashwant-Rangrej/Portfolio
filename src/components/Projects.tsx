@@ -74,7 +74,11 @@ export const Projects: React.FC = () => {
                   display: 'flex',
                   flexDirection: 'column',
                   height: '100%',
-                  borderRadius: '12px'
+                  borderRadius: '12px',
+                  minWidth: 0,
+                  maxWidth: '100%',
+                  boxSizing: 'border-box',
+                  overflow: 'hidden'
                 }}
               >
 
@@ -104,20 +108,27 @@ export const Projects: React.FC = () => {
                 </div>
 
                 <h3 style={{ 
-                  fontSize: '1.35rem', 
+                  fontSize: '1.25rem', 
                   marginBottom: '0.85rem', 
                   color: 'var(--text-main)',
-                  letterSpacing: '-0.01em'
+                  letterSpacing: '-0.01em',
+                  lineHeight: 1.35,
+                  overflowWrap: 'anywhere',
+                  wordBreak: 'break-word'
                 }}>
                   <a 
                     href={repo.html_url} 
                     target="_blank" 
                     rel="noreferrer"
-                    style={{ color: 'var(--text-main)' }}
+                    style={{ 
+                      color: 'var(--text-main)',
+                      overflowWrap: 'anywhere',
+                      wordBreak: 'break-word'
+                    }}
                     onMouseEnter={(e) => e.currentTarget.style.color = '#FFFFFF'}
                     onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-main)'}
                   >
-                    {repo.name.replace(/\.git$/i, '').replace(/[-_]/g, ' ')}
+                    {repo.name.replace(/\.git$/i, '').replace(/[-_.]+/g, ' ')}
                   </a>
 
                 </h3>
@@ -127,7 +138,9 @@ export const Projects: React.FC = () => {
                     fontSize: '0.95rem', 
                     lineHeight: 1.6,
                     color: 'var(--text-muted)',
-                    margin: 0
+                    margin: 0,
+                    overflowWrap: 'anywhere',
+                    wordBreak: 'break-word'
                   }}>
                     {repo.description}
                   </p>

@@ -238,6 +238,11 @@ a {
   width: 100%;
 }
 
+.projects-grid > * {
+  min-width: 0;
+  max-width: 100%;
+}
+
 @media (max-width: 992px) {
   .projects-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
