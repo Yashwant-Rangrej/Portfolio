@@ -18,13 +18,22 @@ export const Hero: React.FC = () => {
     return `${cleanBase}${cleanUrl}`;
   };
 
-  const techBadges = ['FastAPI', 'Flutter', 'PyTorch', 'FAISS', 'React', 'Docker'];
+  const techBadges = [
+    'Python',
+    'FastAPI',
+    'PyTorch',
+    'FAISS',
+    'LLMs / RAG',
+    'Flutter',
+    'React',
+    'Docker'
+  ];
 
   return (
     <section className="section" style={{ minHeight: '100vh', justifyContent: 'center' }}>
       <div className="container">
         <div className="hero-layout">
-          
+
           {/* Left Column: Core Introduction */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -210,7 +219,7 @@ export const Hero: React.FC = () => {
                   <Sparkles size={13} style={{ color: '#FBBF24' }} />
                   <span>Stack:</span>
                 </div>
-                {techBadges.map((tech) => (
+                {techBadges.filter(Boolean).map((tech) => (
                   <span
                     key={tech}
                     style={{
