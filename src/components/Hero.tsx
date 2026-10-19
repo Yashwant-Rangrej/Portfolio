@@ -145,8 +145,8 @@ export const Hero: React.FC = () => {
                   color: 'var(--text-muted)',
                   fontFamily: 'Consolas, Monaco, monospace'
                 }}>
-                  <Terminal size={14} style={{ color: '#A1A1AA' }} />
-                  <span>yashwant.ai.ts</span>
+                  <Terminal size={14} style={{ color: '#60A5FA' }} />
+                  <span>yashwant_ai.py</span>
                 </div>
 
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.75rem', color: '#34D399' }}>
@@ -157,7 +157,7 @@ export const Hero: React.FC = () => {
                     background: '#34D399',
                     boxShadow: '0 0 8px #34D399'
                   }} />
-                  <span style={{ fontFamily: 'Consolas, Monaco, monospace' }}>Active</span>
+                  <span style={{ fontFamily: 'Consolas, Monaco, monospace' }}>Python 3.11</span>
                 </div>
               </div>
 
@@ -170,35 +170,30 @@ export const Hero: React.FC = () => {
                 color: '#E4E4E7',
                 overflowX: 'auto'
               }}>
-                <div style={{ color: '#71717A', marginBottom: '0.5rem' }}>// Core Engineering Matrix</div>
+                <div style={{ color: '#71717A', marginBottom: '0.5rem' }}># Core Engineering Matrix</div>
                 <div>
-                  <span style={{ color: '#F43F5E' }}>const</span>{' '}
                   <span style={{ color: '#60A5FA' }}>engineer</span>{' = {'}
                 </div>
                 <div style={{ paddingLeft: '1.25rem' }}>
-                  <span style={{ color: '#A1A1AA' }}>name:</span>{' '}
-                  <span style={{ color: '#34D399' }}>'Yashwant Rangrej'</span>,
+                  <span style={{ color: '#A1A1AA' }}>"name"</span>: <span style={{ color: '#34D399' }}>"Yashwant Rangrej"</span>,
                 </div>
                 <div style={{ paddingLeft: '1.25rem' }}>
-                  <span style={{ color: '#A1A1AA' }}>role:</span>{' '}
-                  <span style={{ color: '#34D399' }}>'AI/ML & Mobile Developer'</span>,
+                  <span style={{ color: '#A1A1AA' }}>"role"</span>: <span style={{ color: '#34D399' }}>"AI/ML & Mobile Developer"</span>,
                 </div>
                 <div style={{ paddingLeft: '1.25rem' }}>
-                  <span style={{ color: '#A1A1AA' }}>organization:</span>{' '}
-                  <span style={{ color: '#FBBF24' }}>'Abhyudyaya Techno Solutions'</span>,
+                  <span style={{ color: '#A1A1AA' }}>"organization"</span>: <span style={{ color: '#FBBF24' }}>"Abhyudyaya Techno Solutions"</span>,
                 </div>
                 <div style={{ paddingLeft: '1.25rem' }}>
-                  <span style={{ color: '#A1A1AA' }}>focus:</span>{' ['}
-                  <div style={{ paddingLeft: '1.25rem', color: '#93C5FD' }}>'RAG & Vector Search (FAISS)',</div>
-                  <div style={{ paddingLeft: '1.25rem', color: '#93C5FD' }}>'Offline-First Mobile Apps',</div>
-                  <div style={{ paddingLeft: '1.25rem', color: '#93C5FD' }}>'Scalable FastAPI Backends'</div>
+                  <span style={{ color: '#A1A1AA' }}>"focus"</span>: [
+                  <div style={{ paddingLeft: '1.25rem', color: '#93C5FD' }}>"RAG & Vector Search (FAISS)",</div>
+                  <div style={{ paddingLeft: '1.25rem', color: '#93C5FD' }}>"Offline-First Mobile Apps",</div>
+                  <div style={{ paddingLeft: '1.25rem', color: '#93C5FD' }}>"Scalable FastAPI Backends"</div>
                   <span>],</span>
                 </div>
                 <div style={{ paddingLeft: '1.25rem' }}>
-                  <span style={{ color: '#A1A1AA' }}>status:</span>{' '}
-                  <span style={{ color: '#34D399' }}>'Building high-impact software'</span>
+                  <span style={{ color: '#A1A1AA' }}>"status"</span>: <span style={{ color: '#34D399' }}>"Building high-impact software"</span>
                 </div>
-                <div>{'};'}</div>
+                <div>{'}'}</div>
               </div>
 
               {/* Terminal Footer with Quick Tech Chips */}
