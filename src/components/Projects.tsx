@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { API_ENDPOINTS } from '../config/api';
 import { motion } from 'framer-motion';
-import { ExternalLink, FolderGit2, Star } from 'lucide-react';
+import { FolderGit2 } from 'lucide-react';
 
 const GithubIcon = ({ size = 20 }) => (
   <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -14,11 +14,6 @@ interface Repo {
   name: string;
   description: string | null;
   html_url: string;
-  homepage: string | null;
-  topics?: string[];
-  language?: string;
-  stargazers_count?: number;
-  forks_count?: number;
 }
 
 export const Projects: React.FC = () => {
@@ -65,9 +60,11 @@ export const Projects: React.FC = () => {
           </div>
         ) : (
           <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
+            display: 'flex',
+            flexDirection: 'column',
             gap: '1.75rem',
+            maxWidth: '650px',
+            margin: '0 auto'
           }}>
             {repos.map((repo, i) => (
               <motion.div
@@ -81,117 +78,60 @@ export const Projects: React.FC = () => {
                   padding: '2rem',
                   display: 'flex',
                   flexDirection: 'column',
-                  height: '100%',
-                  justifyContent: 'space-between',
                   borderRadius: '12px'
                 }}
               >
-                <div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
-                    <div style={{ 
-                      padding: '0.6rem', 
-                      background: 'rgba(255, 255, 255, 0.05)', 
-                      borderRadius: '8px', 
-                      color: 'var(--text-main)',
-                      border: '1px solid var(--card-border)'
-                    }}>
-                      <FolderGit2 size={24} />
-                    </div>
-                    <div style={{ display: 'flex', gap: '0.85rem', alignItems: 'center', color: 'var(--text-muted)' }}>
-                      {repo.stargazers_count !== undefined && repo.stargazers_count > 0 && (
-                        <span style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', fontSize: '0.85rem' }}>
-                          <Star size={15} color="#A1A1AA" />
-                          {repo.stargazers_count}
-                        </span>
-                      )}
-                      {repo.html_url && (
-                        <a 
-                          href={repo.html_url} 
-                          target="_blank" 
-                          rel="noreferrer" 
-                          aria-label="GitHub Repository"
-                          style={{ color: 'var(--text-muted)' }}
-                          onMouseEnter={(e) => e.currentTarget.style.color = '#FFFFFF'}
-                          onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-muted)'}
-                        >
-                          <GithubIcon size={20} />
-                        </a>
-                      )}
-                      {repo.homepage && (
-                        <a 
-                          href={repo.homepage} 
-                          target="_blank" 
-                          rel="noreferrer" 
-                          aria-label="Live Demo Link"
-                          style={{ color: 'var(--text-muted)' }}
-                          onMouseEnter={(e) => e.currentTarget.style.color = '#FFFFFF'}
-                          onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-muted)'}
-                        >
-                          <ExternalLink size={20} />
-                        </a>
-                      )}
-                    </div>
-                  </div>
-
-                  <h3 style={{ 
-                    fontSize: '1.35rem', 
-                    marginBottom: '0.85rem', 
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
+                  <div style={{ 
+                    padding: '0.6rem', 
+                    background: 'rgba(255, 255, 255, 0.05)', 
+                    borderRadius: '8px', 
                     color: 'var(--text-main)',
-                    letterSpacing: '-0.01em'
+                    border: '1px solid var(--card-border)'
                   }}>
+                    <FolderGit2 size={24} />
+                  </div>
+                  {repo.html_url && (
                     <a 
                       href={repo.html_url} 
                       target="_blank" 
-                      rel="noreferrer"
-                      style={{ color: 'var(--text-main)' }}
+                      rel="noreferrer" 
+                      aria-label="GitHub Repository"
+                      style={{ color: 'var(--text-muted)' }}
                       onMouseEnter={(e) => e.currentTarget.style.color = '#FFFFFF'}
-                      onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-main)'}
+                      onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-muted)'}
                     >
-                      {repo.name.replace(/[-_]/g, ' ')}
+                      <GithubIcon size={20} />
                     </a>
-                  </h3>
-
-                  <p style={{ 
-                    fontSize: '0.95rem', 
-                    lineHeight: 1.6,
-                    color: 'var(--text-muted)',
-                    marginBottom: '1.5rem'
-                  }}>
-                    {repo.description || 'Production-grade repository with clean architectural patterns and documentation.'}
-                  </p>
-                </div>
-
-                <div style={{ 
-                  display: 'flex', 
-                  flexWrap: 'wrap', 
-                  gap: '0.5rem', 
-                  fontSize: '0.8rem', 
-                  fontFamily: 'var(--font-mono)' 
-                }}>
-                  {repo.language && (
-                    <span style={{ 
-                      padding: '0.2rem 0.6rem', 
-                      background: 'rgba(255, 255, 255, 0.05)', 
-                      color: 'var(--text-main)', 
-                      border: '1px solid var(--card-border)',
-                      borderRadius: '4px',
-                      fontWeight: 500 
-                    }}>
-                      {repo.language}
-                    </span>
                   )}
-                  {repo.topics?.slice(0, 3).map(topic => (
-                    <span key={topic} style={{ 
-                      padding: '0.2rem 0.6rem', 
-                      background: 'rgba(255, 255, 255, 0.03)', 
-                      color: 'var(--text-subtle)', 
-                      border: '1px solid rgba(255, 255, 255, 0.05)',
-                      borderRadius: '4px' 
-                    }}>
-                      #{topic}
-                    </span>
-                  ))}
                 </div>
+
+                <h3 style={{ 
+                  fontSize: '1.35rem', 
+                  marginBottom: '0.85rem', 
+                  color: 'var(--text-main)',
+                  letterSpacing: '-0.01em'
+                }}>
+                  <a 
+                    href={repo.html_url} 
+                    target="_blank" 
+                    rel="noreferrer"
+                    style={{ color: 'var(--text-main)' }}
+                    onMouseEnter={(e) => e.currentTarget.style.color = '#FFFFFF'}
+                    onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-main)'}
+                  >
+                    {repo.name.replace(/[-_]/g, ' ')}
+                  </a>
+                </h3>
+
+                <p style={{ 
+                  fontSize: '0.95rem', 
+                  lineHeight: 1.6,
+                  color: 'var(--text-muted)',
+                  margin: 0
+                }}>
+                  {repo.description || 'Production-grade repository with clean architectural patterns and documentation.'}
+                </p>
               </motion.div>
             ))}
           </div>
