@@ -10,32 +10,46 @@ export const About: React.FC = () => {
   return (
     <section id="about" className="section" style={{ minHeight: 'auto', padding: '100px 0' }}>
       <div className="container">
-        <div className="flex flex-col gap-10">
+        
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <h2 className="section-title">About Me</h2>
+        </motion.div>
 
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(360px, 1fr))',
+          gap: '3.5rem',
+          alignItems: 'start'
+        }}>
+          {/* Left Column: Narrative Story */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
+            style={{ fontSize: '1.15rem', color: 'var(--text-muted)' }}
           >
-            <h2 className="section-title">About Me</h2>
-            <div style={{ fontSize: '1.15rem', color: 'var(--text-muted)', maxWidth: '800px' }}>
-              {paragraphs.map((p, i) => (
-                <p key={i} style={{ marginBottom: '1.25rem', lineHeight: 1.8 }}>{p}</p>
-              ))}
-            </div>
+            {paragraphs.map((p, i) => (
+              <p key={i} style={{ marginBottom: '1.25rem', lineHeight: 1.85 }}>{p}</p>
+            ))}
           </motion.div>
 
+          {/* Right Column: Skills Panel */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
             className="glass-panel"
-            style={{ padding: '2.5rem', maxWidth: '850px' }}
+            style={{ padding: '2.5rem', width: '100%', boxSizing: 'border-box' }}
           >
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.75rem' }}>
-              <Code2 size={24} color="var(--accent)" />
+              <Code2 size={24} color="#FFFFFF" />
               <h3 style={{ fontSize: '1.35rem', margin: 0, color: 'var(--text-main)' }}>
                 Core Technologies & Tools
               </h3>
@@ -43,7 +57,7 @@ export const About: React.FC = () => {
 
             <div style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))',
               gap: '12px',
             }}>
               {skills.map((skill, i) => (
@@ -76,8 +90,8 @@ export const About: React.FC = () => {
               ))}
             </div>
           </motion.div>
-
         </div>
+
       </div>
     </section>
   );

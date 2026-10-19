@@ -9,10 +9,13 @@ import { AdminLogin } from './components/AdminLogin';
 import { AdminDashboard } from './components/AdminDashboard';
 import { PortfolioProvider } from './context/PortfolioContext';
 
+import { SideRails } from './components/SideRails';
+
 function PortfolioMain() {
   return (
     <>
       <NetworkBackground />
+      <SideRails />
       <main>
         <Hero />
         <About />
