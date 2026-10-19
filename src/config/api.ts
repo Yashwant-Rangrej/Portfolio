@@ -1,8 +1,11 @@
 const LIVE_RENDER_URL = 'https://portfolio-backend-8tbf.onrender.com';
 
-export const API_BASE_URL: string = 
-  import.meta.env.VITE_API_URL || 
-  (import.meta.env.PROD ? LIVE_RENDER_URL : 'http://localhost:3001');
+// In production (GitHub Pages), prioritize the live Render backend URL over any localhost setting
+export const API_BASE_URL: string = import.meta.env.PROD
+  ? (import.meta.env.VITE_API_URL && !import.meta.env.VITE_API_URL.includes('localhost')
+      ? import.meta.env.VITE_API_URL
+      : LIVE_RENDER_URL)
+  : (import.meta.env.VITE_API_URL || 'http://localhost:3001');
 
 
 export const API_ENDPOINTS = {
