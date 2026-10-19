@@ -254,3 +254,37 @@ a {
     grid-template-columns: 1fr;
   }
 }
+
+/* Hero 2-Column Responsive Layout */
+.hero-layout {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3.5rem;
+  width: 100%;
+}
+
+.hero-content {
+  flex: 1 1 55%;
+  max-width: 620px;
+}
+
+.hero-terminal-wrapper {
+  flex: 1 1 45%;
+  max-width: 480px;
+  width: 100%;
+}
+
+@media (max-width: 992px) {
+  .hero-layout {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 3rem;
+  }
+  .hero-content {
+    max-width: 100%;
+  }
+  .hero-terminal-wrapper {
+    max-width: 100%;
+  }
+}
