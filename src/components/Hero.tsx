@@ -29,6 +29,40 @@ export const Hero: React.FC = () => {
     'Docker'
   ];
 
+  const renderTextWithCompanyLink = (text: string) => {
+    if (!text) return text;
+    const parts = text.split(/(Abhyudyaya Techno Solutions)/g);
+    return parts.map((part, index) =>
+      part === 'Abhyudyaya Techno Solutions' ? (
+        <a
+          key={index}
+          href="https://abhyudyayatech.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            color: 'var(--text-main)',
+            textDecoration: 'underline',
+            textDecorationColor: 'rgba(255, 255, 255, 0.4)',
+            textUnderlineOffset: '3px',
+            transition: 'all 0.2s ease'
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.color = '#FFFFFF';
+            e.currentTarget.style.textDecorationColor = '#FFFFFF';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.color = 'var(--text-main)';
+            e.currentTarget.style.textDecorationColor = 'rgba(255, 255, 255, 0.4)';
+          }}
+        >
+          {part}
+        </a>
+      ) : (
+        part
+      )
+    );
+  };
+
   return (
     <section className="section" style={{ minHeight: '100vh', justifyContent: 'center' }}>
       <div className="container">
@@ -82,7 +116,7 @@ export const Hero: React.FC = () => {
               lineHeight: 1.7,
               color: 'var(--text-muted)'
             }}>
-              {data.hero.description || "Passionate about crafting intelligent agents, cross-platform mobile apps, and robust high-performance backend microservices."}
+              {renderTextWithCompanyLink(data.hero.description || "Passionate about crafting intelligent agents, cross-platform mobile apps, and robust high-performance backend microservices.")}
             </p>
 
             <motion.div
@@ -166,7 +200,32 @@ export const Hero: React.FC = () => {
                   <span style={{ color: '#A1A1AA' }}>"role"</span>: <span style={{ color: '#34D399' }}>"AI/ML & Mobile Developer"</span>,
                 </div>
                 <div style={{ paddingLeft: '1.25rem' }}>
-                  <span style={{ color: '#A1A1AA' }}>"Currently working at"</span>: <span style={{ color: '#FBBF24' }}>"Abhyudyaya Techno Solutions"</span>,
+                  <span style={{ color: '#A1A1AA' }}>"currently working at"</span>:{" "}
+                  <a
+                    href="https://abhyudyayatech.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title="Visit Abhyudyaya Techno Solutions"
+                    style={{
+                      color: '#FBBF24',
+                      textDecoration: 'none',
+                      borderBottom: '1px dashed rgba(251, 191, 36, 0.6)',
+                      paddingBottom: '1px',
+                      transition: 'all 0.2s ease',
+                      cursor: 'pointer'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.color = '#FDE047';
+                      e.currentTarget.style.borderBottomColor = '#FDE047';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.color = '#FBBF24';
+                      e.currentTarget.style.borderBottomColor = 'rgba(251, 191, 36, 0.6)';
+                    }}
+                  >
+                    "Abhyudyaya Techno Solutions"
+                  </a>
+                  ,
                 </div>
                 <div style={{ paddingLeft: '1.25rem' }}>
                   <span style={{ color: '#A1A1AA' }}>"focus"</span>: [

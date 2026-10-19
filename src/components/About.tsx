@@ -7,6 +7,40 @@ export const About: React.FC = () => {
   const { data } = usePortfolio();
   const { paragraphs, skills } = data.about;
 
+  const renderTextWithCompanyLink = (text: string) => {
+    if (!text) return text;
+    const parts = text.split(/(Abhyudyaya Techno Solutions)/g);
+    return parts.map((part, index) =>
+      part === 'Abhyudyaya Techno Solutions' ? (
+        <a
+          key={index}
+          href="https://abhyudyayatech.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            color: 'var(--text-main)',
+            textDecoration: 'underline',
+            textDecorationColor: 'rgba(255, 255, 255, 0.4)',
+            textUnderlineOffset: '3px',
+            transition: 'all 0.2s ease'
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.color = '#FFFFFF';
+            e.currentTarget.style.textDecorationColor = '#FFFFFF';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.color = 'var(--text-main)';
+            e.currentTarget.style.textDecorationColor = 'rgba(255, 255, 255, 0.4)';
+          }}
+        >
+          {part}
+        </a>
+      ) : (
+        part
+      )
+    );
+  };
+
   return (
     <section id="about" className="section" style={{ minHeight: 'auto', padding: '100px 0' }}>
       <div className="container">
@@ -35,7 +69,9 @@ export const About: React.FC = () => {
             style={{ fontSize: '1.15rem', color: 'var(--text-muted)' }}
           >
             {paragraphs.map((p, i) => (
-              <p key={i} style={{ marginBottom: '1.25rem', lineHeight: 1.85 }}>{p}</p>
+              <p key={i} style={{ marginBottom: '1.25rem', lineHeight: 1.85 }}>
+                {renderTextWithCompanyLink(p)}
+              </p>
             ))}
           </motion.div>
 
