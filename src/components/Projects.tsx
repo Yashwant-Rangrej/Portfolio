@@ -59,13 +59,9 @@ export const Projects: React.FC = () => {
             Loading project repositories...
           </div>
         ) : (
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-            gap: '1.75rem',
-            width: '100%'
-          }}>
+          <div className="projects-grid">
             {repos.map((repo, i) => (
+
               <motion.div
                 key={repo.id || i}
                 initial={{ opacity: 0, y: 25 }}
