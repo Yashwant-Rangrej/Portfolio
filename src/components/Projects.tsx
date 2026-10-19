@@ -122,14 +122,16 @@ export const Projects: React.FC = () => {
 
                 </h3>
 
-                <p style={{ 
-                  fontSize: '0.95rem', 
-                  lineHeight: 1.6,
-                  color: 'var(--text-muted)',
-                  margin: 0
-                }}>
-                  {repo.description || 'Production-grade repository with clean architectural patterns and documentation.'}
-                </p>
+                {repo.description && (
+                  <p style={{ 
+                    fontSize: '0.95rem', 
+                    lineHeight: 1.6,
+                    color: 'var(--text-muted)',
+                    margin: 0
+                  }}>
+                    {repo.description}
+                  </p>
+                )}
               </motion.div>
             ))}
           </div>
